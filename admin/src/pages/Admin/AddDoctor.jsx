@@ -3,6 +3,7 @@ import { assets } from '../../assets/assets_admin/assets'
 import { AdminContext } from '../../context/AdminContext'
 import { toast } from 'react-toastify'
 import axios from 'axios'
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 const AddDoctor = () => {
 
     const [docImg,setDocImg] = useState(false)
@@ -18,7 +19,7 @@ const AddDoctor = () => {
     const [address2,setAddress2]  = useState('')
     
      const {backendUrl,aToken}= useContext(AdminContext)
-     
+     const [showPassword, setShowPassword] = useState(false);
     const onSubmitHandler = async (event) => {
         event.preventDefault()
         try{
@@ -97,10 +98,28 @@ const AddDoctor = () => {
                         <input onChange={(e)=> setEmail(e.target.value)} value={email} className='border rounded px-3 py-2'  type='email' placeholder='Email' required />
                     </div>
 
-                    <div className='flex-1 flex-col gap-1'>
-                        <p>Docotor Password</p>
-                        <input  onChange={(e)=> setPassword(e.target.value)} value={password}  className='border rounded px-3 py-2' type='password' placeholder='Password' required />
-                    </div>
+                    <div className="flex-1 flex-col gap-1">
+    <p>Doctor Password</p>
+
+    <div className="relative">
+        <input
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            className="border rounded px-3 py-2 w-full pr-10"
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            required
+        />
+
+        <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+        >
+            {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+        </button>
+    </div>
+</div>
                  
                    <div className='flex-1 flex-col gap-1'> 
                     <p>Experience</p>

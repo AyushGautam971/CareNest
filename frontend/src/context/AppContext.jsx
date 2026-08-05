@@ -6,7 +6,8 @@ export const AppContext = createContext();
 const AppContextProvider = (props) =>{
 
    const currencySymbol = '$'
-   const backendUrl = import.meta.env.VITE_BACKEND_URL
+   const backendUrl =
+  import.meta.env.VITE_BACKEND_URL || "http://localhost:4000";
      const [doctors,setDoctors]  = useState([]) 
      const [token,setToken] = useState(localStorage.getItem('token')? localStorage.getItem('token'):false)
 
@@ -16,37 +17,33 @@ const AppContextProvider = (props) =>{
 
     const getDoctorsdata = async () =>{
         try{
-            const {data} = await axios.get(backendUrl + '/api/doctor/list')
-            console.log(data)
+            const {data} = await axios.get( 'http://localhost:4000/api/doctor/list')
+         
             if(data.success){
                 setDoctors(data.doctors)
             }
-            else {
-                toast.error(data.message)
-            }
+           
         }
         catch(err){
-             console.log(err)
+             
              toast.error(err.message)
         }
     }
 
       const loadUserProfileData = async() => {
           try{
-            console.log(token)
-              const {data } = await axios.get(backendUrl + '/api/user/get-profile',{headers:{token}})
-                console.log(data)
+           
+              const {data } = await axios.get( 'http://localhost:4000/api/user/get-profile',{headers:{token}})
+                // console.log(data)
               if(data.success){
 
                 setUserData(data.userData)
               }
-              else {
-                toast.error(data.message)
-              }
+             
           }
           catch(err){
-             console.log(err)
-             toast.err(err.message)
+          
+             toast.error(err.message)
           }
       }
 

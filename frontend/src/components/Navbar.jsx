@@ -222,7 +222,7 @@ const Navbar = () => {
         }
 
         {/* Mobile Menu Icon */}
-        <img
+        {/* <img
           onClick={() => setShowMenu(true)}
           className='w-6 md:hidden cursor-pointer'
           src={assets.menu_icon}
@@ -232,12 +232,12 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div
+      {/* <div
         className={`${showMenu ? 'fixed inset-0' : 'hidden'} md:hidden bg-white z-50`}
       >
 
         {/* Top */}
-        <div className='flex items-center justify-between px-5 py-6 border-b'>
+        {/* /* /* <div className='flex items-center justify-between px-5 py-6 border-b'>
 
           <img
             className='w-36'
@@ -252,7 +252,54 @@ const Navbar = () => {
             alt=""
           />
 
-        </div>
+        </div>  */}
+        {/* Mobile Menu Icon */}
+{!showMenu && (
+  <img
+    onClick={() => setShowMenu(true)}
+    className="w-6 md:hidden cursor-pointer"
+    src={assets.menu_icon}
+    alt="Menu"
+  />
+)}
+
+</div>
+
+{/* Mobile Menu */}
+<div
+  className={`${
+    showMenu ? "fixed inset-0 z-[9999] bg-white" : "hidden"
+  } md:hidden`}
+>
+
+  {/* Top */}
+  <div className="flex items-center justify-between px-5 py-6 border-b">
+
+    <img
+      className="w-36"
+      onClick={() => {
+                navigate('/');
+                setShowMenu(false)
+              }}
+      src={assets.logo}
+      
+      alt="Logo"
+    />
+
+    <button
+      type="button"
+      onClick={() => setShowMenu(false)}
+      className="p-1"
+    >
+      <img
+        className="w-7"
+        src={assets.cross_icon}
+        alt="Close"
+      />
+    </button>
+
+  </div>
+
 
         {/* Mobile Links */}
         <ul className='flex flex-col items-center gap-6 mt-10 text-lg font-medium'>

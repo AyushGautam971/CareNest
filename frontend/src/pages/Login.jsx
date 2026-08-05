@@ -4,17 +4,19 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import {useNavigate} from 'react-router-dom'
 import { useEffect } from 'react'
-
+ import { FaEye, FaEyeSlash } from "react-icons/fa";
 const Login = () => {
  
     const {backendUrl,token,setToken} = useContext(AppContext)
    const navigate = useNavigate()
 
   const [state,setState] = useState('Sign Up')
-
   const [email,setEmail]  = useState('')
   const [password,setPassword] = useState('')
   const [name,setName ] = useState('')
+  
+  const [showPassword, setShowPassword] = useState(false);
+ 
 
   const onSubmitHandler = async(event) =>{
          event.preventDefault();
@@ -22,7 +24,7 @@ const Login = () => {
    try{
     if(state === 'Sign Up'){
 
-      const {data} = await axios.post(backendUrl + '/api/user/register',{name,password,email})
+      const {data} = await axios.post(`${backendUrl}/user/register`,{name,password,email})
       if(data.success){
         localStorage.setItem('token',data.token)
         setToken(data.token)
@@ -33,8 +35,9 @@ const Login = () => {
 
     }
     else{
-      
-        const {data} = await axios.post(backendUrl + '/api/user/login',{password,email})
+        console.log("backendUrl:", backendUrl);
+console.log("Final URL:", `${backendUrl}/api/user/login`);
+        const {data} = await axios.post(`${backendUrl}/api/user/login`,{password,email})
       if(data.success){
         localStorage.setItem('token',data.token)
         setToken(data.token)
@@ -71,10 +74,30 @@ const Login = () => {
         <p>Email</p>
         <input className='border border-zinc-300 rounded w-full p-2 mt-1'  type="email" onChange={(e)=>setEmail(e.target.value)} value={email}  required/>
       </div>
-      <div className='w-full'>
+      {/* <div className='w-full'>
         <p>Password</p>
         <input className='border border-zinc-300 rounded w-full p-2 mt-1' type="password" onChange={(e)=>setPassword(e.target.value)} value={password} required/>
-      </div>
+      </div> */}
+      <div className="w-full">
+  <p>Password</p>
+
+  <div className="relative">
+    <input
+      className="border border-zinc-300 rounded w-full p-2 pr-10 mt-1"
+      type={showPassword ? "text" : "password"}
+      onChange={(e) => setPassword(e.target.value)}
+      value={password}
+      required
+    />
+
+    <span
+      onClick={() => setShowPassword(!showPassword)}
+      className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-gray-500"
+    >
+      {showPassword ? <FaEyeSlash /> : <FaEye />}
+    </span>
+  </div>
+</div>
       <button className='bg-primary text-white w-full py-2 rounded-md text-base'>{state === 'Sign Up'? "CreateAccount" :"Login"}</button>
       {
         state === 'Sign Up'

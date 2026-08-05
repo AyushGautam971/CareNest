@@ -42,7 +42,7 @@ import userRouter from './routes/userRoute.js'
 
 // app config
 const app = express()
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 5000
 
 // database connections
 connectDB()
@@ -52,8 +52,9 @@ connectCloudinary()
 app.use(express.json())
 
 const allowedOrigins = [
-    'https://prescripto-one-rose.vercel.app',
-    'https://prescripto-r9b6m98xs-ayushgautam971s-projects.vercel.app'
+      'https://prescripto-one-rose.vercel.app',
+     'https://prescripto-r9b6m98xs-ayushgautam971s-projects.vercel.app',
+    'http://localhost:5173', 'http://localhost:5174'
 ]
 
 app.use(cors({
@@ -78,3 +79,5 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log("Server Started", port)
 })
+
+

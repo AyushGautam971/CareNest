@@ -27,7 +27,7 @@ const changeAvailability = async (req,res)=>{
 const doctorList = async(req,res) => {
     try{
         const doctors  = await doctorModel.find({}).select(['-password','-email'])
-        // console.log(doctors)
+        //  console.log(doctors)
         res.json({success:true,doctors})
     }
     catch(err){
@@ -68,14 +68,14 @@ const loginDoctor = async (req,res)=>{
 const appointmentsDoctor = async(req,res) =>{
     try{
       const docId = req.docId
-      console.log(docId)
+    //   console.log(docId)
       const appointments = await appointmentModel.find({docId})
         //   console.log(appointments)
       res.json({success:true,appointments})
 
     }  
     catch(err){
-         console.log(err)
+        //  console.log(err)
         res.json({success:false,message:err.message})
     }
 }
@@ -95,7 +95,7 @@ const appointmentComplete = async(req,res)=>{
         }
     }
     catch(err){
-        console.log(err)
+        // console.log(err)
         res.json({success:false,message:err.message})
     }
 }

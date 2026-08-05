@@ -5,6 +5,7 @@ import { AdminContext } from '../context/AdminContext'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { DoctorContext } from '../context/DoctorContext'
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
 const Login = () => {
 
   const [state,setState] = useState('Admin')
@@ -14,7 +15,7 @@ const Login = () => {
 
   const {setAToken,backendUrl} = useContext(AdminContext)
   const {setDToken} = useContext(DoctorContext)
-
+  const [showPassword,setShowPassword] = useState(false)
   const onSubmitHandler =  async(event) =>{
         event.preventDefault()
         try{
@@ -38,7 +39,7 @@ const Login = () => {
                
                 localStorage.setItem('dToken',data.token)
           
-                console.log(data.token)
+              
                }
                else{
                 toast.error(data.message)
@@ -62,10 +63,31 @@ const Login = () => {
           <p>Email</p>
           <input onChange={(e)=>setEmail(e.target.value)}  value={email} className='border border-[#DADADA] rounded w-full p-2 mt-1'  type='email' required />
         </div>
-        <div className='w-full'>
+        {/* <div className='w-full'>
           <p>Password</p>
           <input onChange={(e)=>setPassword(e.target.value)}  value={password}  className='border border-[#DADADA] rounded w-full p-2 mt-1' type='password' required />
-        </div>
+        </div> */}
+
+
+          <div className="w-full relative">
+                <input
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    className="border rounded px-3 py-2 w-full pr-10"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Password"
+                    required
+                />
+        
+                <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                >
+                    {showPassword ? <FaEyeSlash size={18} /> : <FaEye size={18} />}
+                </button>
+            </div>
+      
         <button className='bg-primary text-white w-full py-2 rounded-md text-base'>Login</button>
         {
           state === 'Admin'
