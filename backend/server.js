@@ -52,9 +52,7 @@ connectCloudinary()
 app.use(express.json())
 
 const allowedOrigins = [
-      'https://prescripto-one-rose.vercel.app',
-     'https://prescripto-r9b6m98xs-ayushgautam971s-projects.vercel.app',
-    'http://localhost:5173', 'http://localhost:5174'
+      process.env.Render_Frontend
 ]
 
 app.use(cors({
