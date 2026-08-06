@@ -50,12 +50,15 @@ connectCloudinary()
 
 // middlewares
 app.use(express.json())
+console.log("=== SERVER STARTED ===");
 
 const allowedOrigins = [
     process.env.Admin_Frontend,
    process.env.Render_Frontend,
 
 ]
+console.log("Admin:", process.env.Admin_Frontend);
+console.log("User:", process.env.Render_Frontend);
 console.log(allowedOrigins);
 
 app.use(cors({
