@@ -54,11 +54,9 @@ app.use(express.json())
 const allowedOrigins = [
     process.env.Admin_Frontend,
    process.env.Render_Frontend,
-      
-      
-      
 
 ]
+console.log(allowedOrigins);
 
 app.use(cors({
     origin: function (origin, callback) {
