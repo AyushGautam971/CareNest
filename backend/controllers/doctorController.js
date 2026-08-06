@@ -45,16 +45,17 @@ const loginDoctor = async (req,res)=>{
         if(!doctor){
             return res.json({success:false,message:'Invalid credential'})
         }
-        // const isMatch  = await  bcrypt.compare(password,'$2b$10$AnzjA3WzfG.HmLSoLrAuFu9HQcq0qZpZWawUiWBkGiSOeOhd22nhm')
+        console.log(doctor)
+         const isMatch  = await  bcrypt.compare(password,doctor.password)
 
-        // if(isMatch){
+        if(isMatch){
             const token = jwt.sign({id:doctor._id},process.env.JWT_SECRET)
 
             res.json({success:true,token})
-        // }
-        // else{
-        //     res.json({success:false,message:'Invalid credential'})
-        // } 
+         }
+        else{
+            res.json({success:false,message:'Invalid credential'})
+        } 
     }
     catch(err){
         console.log(err)

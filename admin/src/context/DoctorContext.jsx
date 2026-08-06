@@ -17,7 +17,7 @@ export const DoctorContextProvider = (props) =>{
       const getAppointments  = async()=>{
          try{
 
-            console.log(dToken)
+            // console.log(dToken)
             const {data} = await axios.get(backendUrl + '/api/doctor/appointments',{headers:{dToken}})
 
             if(data.success){
@@ -26,12 +26,12 @@ export const DoctorContextProvider = (props) =>{
                // console.log(reversed)
             }
             else {
-                toast.error(data.message)   
+               //  toast.error(data.message)   
             }
          }
          catch(err){
             console.log(err)
-            toast.error(err.message)
+            // toast.error(err.message)
          }
       }
        
@@ -43,12 +43,12 @@ export const DoctorContextProvider = (props) =>{
             getAppointments()
            }
          else{
-            toast.error(data.message)
+            // toast.error(data.message)
          }
          }
          catch(err){
              console.log(err)
-            toast.error(err.message)
+            // toast.error(err.message)
 
          }
       }
@@ -63,12 +63,12 @@ export const DoctorContextProvider = (props) =>{
             
            }
          else{
-            toast.error(data.message)
+            // toast.error(data.message)
          }
          }
          catch(err){
              console.log(err)
-            toast.error(err.message)
+            // toast.error(err.message)
 
          }
       }
@@ -79,7 +79,7 @@ export const DoctorContextProvider = (props) =>{
              const {data} = await axios.get(backendUrl+ '/api/doctor/dashboard',{headers:{dToken}} )
              if(data.success){
                setDashData(data.dashData)
-               console.log(data.dashData)
+               // console.log(data.dashData)
              }
              else{
                toast.error(data.message)
@@ -87,7 +87,7 @@ export const DoctorContextProvider = (props) =>{
          }
          catch(err){
            console.log(err)
-            toast.error(err.message)
+          toast.error(err.message)
          }
       }
 
@@ -98,12 +98,12 @@ export const DoctorContextProvider = (props) =>{
          
           if(data.success){
             setProfileData(data.profileData)
-            console.log(data.profileData)
+            // console.log(data.profileData)
           }
       }
       catch(err){
           console.log(err)
-            toast.error(err.message)
+            // toast.error(err.message)
       }
      }
      

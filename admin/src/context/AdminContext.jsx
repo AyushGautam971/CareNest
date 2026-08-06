@@ -23,15 +23,15 @@ export const AdminContextProvider = (props) =>{
             const {data}  =  await axios.post(backendUrl+'/api/admin/all-doctors',{},{headers:{aToken}})
             if(data.success){
                setDoctors(data.doctors)
-               console.log(data.doctors)
+               // console.log(data.doctors)
             }
             else{
-               toast.error(data.message)
+               // toast.error(data.message)
             }
              
          }
          catch(error){
-              toast.error(error.message)
+            //   toast.error(error.message)
          }
          
       }
@@ -57,7 +57,7 @@ export const AdminContextProvider = (props) =>{
             const {data} = await axios.get(backendUrl+'/api/admin/appointments',{headers:{aToken}})
             if(data.success){
                setAppointments(data.appointments)
-               console.log(data.appointments)
+               // console.log(data.appointments)
             }
             else{
                toast.error(data.message)
@@ -90,17 +90,17 @@ export const AdminContextProvider = (props) =>{
        const getDashData  = async()=>{
           try{
             const {data} = await axios.get(backendUrl + '/api/admin/dashboard',{headers:{aToken}})
-               console.log(data)
+               // console.log(data)
             if(data.success){
                setDashData(data.dashData)
-               console.log(data.dashData)
+               // console.log(data.dashData)
             }
             else{
-               toast.error(data.message)
+               // toast.error(data.message)
             }
           }
           catch(err){
-            toast.error(err.message)
+            // toast.error(err.message)
           }
        } 
 

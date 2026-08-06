@@ -52,7 +52,12 @@ connectCloudinary()
 app.use(express.json())
 
 const allowedOrigins = [
-      process.env.Render_Frontend
+    process.env.Admin_Frontend,
+   process.env.Render_Frontend,
+      
+      
+      
+
 ]
 
 app.use(cors({
